@@ -27,27 +27,37 @@ client.on("messageCreate", message => {
     if(message.content === prefix + "start"){
         isOn = true;
         message.channel.send("started");
+        return;
     }
 
     if(message.content === prefix + "stop"){
         isOn = false;
         message.channel.send("stoped");
+        return;
     }
 
     if(message.content === prefix + "day"){
         message.channel.send(String(day - (Math.trunc(annee) * 360)));
+        return;
     }
 
     if(message.content === prefix + "fullDay"){
         message.channel.send(String(day));
+        return;
     }
 
     if(message.content === prefix + "year"){
         message.channel.send(String(Math.trunc(annee)));
+        return;
+    }
+
+    if(message.content === prefix + "status"){
+        message.channel.send(isOn);
+        return;
     }
 
     trigger = true;
-    setInterval(myTimer, 400000);
+    setInterval(myTimer, 1200000);
 
     function myTimer() {
         if(isOn == true && trigger == true){
