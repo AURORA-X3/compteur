@@ -8,11 +8,14 @@ const client = new Client({
     ]
 });
 
-const prefix = "_";
+const prefix = "compteur_";
 var isOn = false;
 var day = 89280;
+var annee = 0;
 var mod = 0;
+var trigger = true;
 
+annee = day / 360;
 
 client.on("ready", () => {
     console.log("ready");
@@ -31,12 +34,26 @@ client.on("messageCreate", message => {
         message.channel.send("stoped");
     }
 
+    if(message.content === prefix + "day"){
+        message.channel.send(String(day - (Math.trunc(annee) * 360)));
+    }
+
+    if(message.content === prefix + "fullDay"){
+        message.channel.send(String(day));
+    }
+
+    if(message.content === prefix + "year"){
+        message.channel.send(String(Math.trunc(annee)));
+    }
+
+    trigger = true;
     setInterval(myTimer, 1200000);
 
     function myTimer() {
-        if(isOn == true){
+        if(isOn == true && trigger == true){
             day = day + 1;
-            message.channel.send("Jour :" + String(day) + "Année" + String(day / 360));
+            message.channel.send("Jour : " + String(day - (Math.trunc(annee) * 360)) + " Année : " + String(Math.trunc(annee)));
+            trigger = false;
         }
         mod = day % 1800;
     
