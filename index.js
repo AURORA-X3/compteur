@@ -52,7 +52,7 @@ client.on("messageCreate", message => {
     }
 
     if(message.content === prefix + "status"){
-        message.channel.send(isOn);
+        message.channel.send(String(isOn));
         return;
     }
 
