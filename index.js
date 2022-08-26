@@ -10,7 +10,7 @@ const client = new Client({
 
 const prefix = "compteur_";
 var isOn = false;
-var day = 89280;
+var day = 89282;
 var annee = 0;
 var mod = 0;
 var trigger = true;
@@ -47,7 +47,7 @@ client.on("messageCreate", message => {
     }
 
     trigger = true;
-    setInterval(myTimer, 1200000);
+    setInterval(myTimer, 400000);
 
     function myTimer() {
         if(isOn == true && trigger == true){
